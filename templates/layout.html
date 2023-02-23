@@ -5,7 +5,9 @@
     <title>This is checking page</title>
 </head>
 <body>
-    <h3>Successfully Extracted!!!!
-    </h3>
+    <h1>Successfully Extracted!!!!</h1>
+        {% for name in Name %}
+        <a href="/download/{{ name }}" download>{{ name }}</a>
+        {% endfor %}
 </body>
 </html>

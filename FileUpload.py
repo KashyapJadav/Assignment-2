@@ -4,6 +4,7 @@ import aiohttp_jinja2
 from zipfile import ZipFile
 from aiohttp import web
 
+
 routes = web.RouteTableDef()
 
 @routes.get('/')
@@ -24,6 +25,12 @@ async def UploadFile(request):
         print("Succesfully Extracted!!!")
         file_name_dict = {'Name':file_name}
     response = aiohttp_jinja2.render_template("layout.html",request,context=file_name_dict)
+    return response
+
+@routes.get('/download/{name}')
+async def file_download(request):
+    name = request.match_info.get('name')
+    response = web.FileResponse(path=os.path.join(os.getcwd(),"save_file",name))
     return response
 
 
